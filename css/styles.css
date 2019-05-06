@@ -1,0 +1,226 @@
+/*
+Copyright (c) 2019 by Shahed Nasser. All Rights Reserved.
+ */
+
+@font-face {
+  src: url(me_quran.ttf);
+  font-family: QuranFont;
+}
+
+body {
+  color: #fff;
+  position: relative;
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: -2;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .6);
+  z-index: -1;
+}
+
+.verse, .bismillah, .athkar-container {
+  font-family: QuranFont;
+}
+
+.verse, .athkar-container {
+  font-size: 30px;
+  width: 70%;
+  text-align: center;
+  line-height: 210%;
+  word-spacing: 10px;
+}
+
+.verse {
+  opacity: 0;
+  margin: 10px auto;
+}
+
+.verse-details, .bismillah {
+  font-size: 20px;
+}
+
+.audio-player {
+  opacity: .5;
+  transition: opacity .2s;
+}
+
+.audio-player:hover {
+  opacity: 1;
+}
+
+.audio-player img {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: block;
+  margin: 4px auto;
+}
+
+
+.translation-container {
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  background: #fff;
+  color: #333;
+  border-radius: 25px 25px 0px 0px;
+  opacity: .7;
+  transition: all .2s;
+  width: 60%;
+  left: 20%;
+}
+
+.translation-container .title {
+  font-size: 20px;
+  width: fit-content;
+  border-bottom: 1px solid #333;
+  margin: 10px auto;
+}
+
+.translation-container:hover {
+  opacity: 1;
+}
+
+.translation-container .body {
+  display: none;
+  font-size: 15px;
+  padding: 10px;
+}
+
+.translation-container:hover .body {
+  display: block;
+}
+
+.settings-link, .reload {
+  opacity: .5;
+  cursor: pointer;
+  transition: all .2s;
+  position: absolute;
+  top: 10px;
+  height: 30px;
+}
+
+.settings-link {
+  right: 10px;
+}
+
+.reload {
+  left: 10px;
+}
+
+.reload .loader {
+  font-size: 20px !important;
+}
+
+.settings-link:hover, .reload:hover {
+  opacity: 1;
+}
+
+.audio-player .error {
+  display: none;
+}
+
+.content-container {
+  display: flex;
+  width: 100%;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 2em;
+}
+
+.content-container .content {
+  text-align: center;
+}
+
+.verse-container {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.top-sites-container {
+  flex-direction: column;
+  display: flex;
+  flex: 1;
+}
+
+.top-sites-container a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  font-size: 17px;
+  background-color: #fff;
+  color: #333;
+  text-decoration: none;
+  padding: 7px;
+  width: 80%;
+  opacity: .8;
+  transition: all .2s;
+  margin-bottom: 5px;
+}
+
+.top-sites-container a:hover {
+  opacity: 1;
+}
+
+.top-sites-container a img {
+  width: 16px;
+  margin-right: 10px
+}
+
+.athkar-container {
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
+
+.athkar-container .title {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid;
+  padding-bottom: 3px;
+  margin-bottom: 15px;
+}
+
+.thikr {
+  direction: rtl;
+}
+
+.gregorian-date, .holidays {
+  font-size: 20px;
+  opacity: .8;
+}
+
+.hijri-date {
+  font-size: 30px;
+}
+
+.date-container {
+  text-align: center;
+  font-family: QuranFont;
+  direction: rtl;
+  word-spacing: 10px;
+}
