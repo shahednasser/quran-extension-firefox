@@ -21,11 +21,6 @@
     "scripts": ["js/background.js"],
     "persistent": false
   },
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "shahednasser@gmail.com"
-    }
-  },  
   "icons": {
     "16": "/assets/icon-16.png",
     "32": "/assets/icon-32.png",
