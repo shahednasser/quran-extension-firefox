@@ -1,11 +1,14 @@
 {
   "name": "Quran In New Tab",
-  "version": "1.4",
+  "version": "2.0.0",
   "description": "View Quran verses on the new tab page.",
   "permissions": [
           "storage",
-          "topSites"
+          "topSites",
+          "alarms",
+          "notifications"
   ],
+  "default_locale": "en",
   "chrome_url_overrides" : {
     "newtab": "newtab.html"
   },
@@ -14,6 +17,15 @@
     "page": "options.html",
     "open_in_tab": true
   },
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": false
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "shahednasser@gmail.com"
+    }
+  },  
   "icons": {
     "16": "/assets/icon-16.png",
     "32": "/assets/icon-32.png",

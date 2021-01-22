@@ -4,6 +4,8 @@
 
 Replace the new tab page with Quran verses and beautiful nature pictures. The verses and pictures are randomly generated hourly. You can choose to show or hide your top sites.
 
+**You can find the chrome extension [here](https://github.com/shahednasser/quran-extension)**
+
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Quran In New Tab](#quran-in-new-tab)
@@ -12,7 +14,7 @@ Replace the new tab page with Quran verses and beautiful nature pictures. The ve
 	- [Recitations](#recitations)
 	- [Translations](#translations)
 	- [Athkar](#athkar)
-	- [Credits:](#credits)
+	- [Credits](#credits)
 	- [Issues](#issues)
 	- [License](#license)
 
@@ -20,7 +22,7 @@ Replace the new tab page with Quran verses and beautiful nature pictures. The ve
 
 ## Download
 
-Add the firefox extension [here](https://chrome.google.com/webstore/detail/quran-in-new-tab/hggkcijghhpkdjeokpfgbhnpecliiijg?authuser=1).
+Add the firefox extension [here](https://addons.mozilla.org/en-US/firefox/addon/quran-in-new-tab/).
 
 ## Hijri Dates
 
@@ -51,7 +53,7 @@ and many more.
 Starting from version 1.0, you can show randomly generated Athkar on your new tab as well.
 
 
-## Credits:
+## Credits
 
 - All Quran verses, audios and translations use the API of [Al Quran Cloud](https://alquran.cloud/)
 - Icons from [Feather](https://feathericons.com/)
@@ -65,6 +67,6 @@ If you find any issues or bugs, please create a Github issue.
 
 ## License
 
-Copyright © 2019 Shahed Nasser
+Copyright © 2021 Shahed Nasser
 
-Licensed under the [MIT License](https://github.com/shahednasser/quran-extension/blob/master/LICENSE).
+Licensed under the [MIT License](https://github.com/shahednasser/quran-extension-firefox/blob/master/LICENSE).

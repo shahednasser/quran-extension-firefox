@@ -1,20 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>New Tab</title>
+    <link rel="stylesheet" href="css/sweetalert2.min.css"  />
+    <link rel="stylesheet" href="/css/bootstrap.min.css"  />
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/loader.css"  />
   </head>
   <body>
     <img src='' class="background-image" />
-    <div class="reload">
+    <div class="reload toolbar-link" data-toggle="tooltip" title="__MSG_reload__">
       <img src="assets/reload.svg" alt="Reload"  />
       <div class="loader"></div>
     </div>
-    <div class="overlay">
+    <div class="report toolbar-link" data-toggle="tooltip" title="__MSG_report_image__">
+      <img src="assets/alert-triangle.svg" alt="Report Image"  />
+      <div class="loader"></div>
     </div>
-    <img src="assets/settings.svg" alt="Settings" class="settings-link"  />
+    <a href="https://chrome.google.com/webstore/detail/quran-in-new-tab/hggkcijghhpkdjeokpfgbhnpecliiijg"
+      data-toggle="tooltip" title="__MSG_rate_extension__" class="rate-link toolbar-link">
+      <img src="assets/star.svg" alt="Rate This Extension" />
+    </a>
+    <img src="assets/calendar.svg" alt="Calendar" class="calendar-btn toolbar-link" data-toggle="tooltip" title="__MSG_calendar__"  />
+    <img src="assets/settings.svg" alt="Settings" class="settings-link toolbar-link" data-toggle="tooltip" title="__MSG_settings__"  />
     <div class="date-container">
       <div class="gregorian-date">
       </div>
@@ -41,18 +50,48 @@
       </div>
     </div>
     <div class="athkar-container" style="display: none;">
-      <h4 class="title">أذكار</h4>
+      <h4 class="title">__MSG_athkar__</h4>
       <div class="thikr">
       </div>
     </div>
     <div class='translation-container' style="display: none;">
       <div class="title">
-        Quran Translation
+        __MSG_quran_translation__
       </div>
       <div class="body">
       </div>
     </div>
+    <div class="calendar-container">
+      <button type="button" class="close close-calendar" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="container mt-5 calendar-table">
+        <h1 class="text-center">__MSG_calendar__</h1>
+        <div class="loader mt-5 text-dark"></div>
+        <div class="calendar-inner-container text-center">
+          <h2><span id="gregorianMonth"></span> - <span id="hijriMonth"></span></h2>
+          <a class="notifications-reminder" href="/options.html">__MSG_enable_notification_notice__</a>
+          <div class="calendar-wrapper mt-3 mb-5">
+            <div class="calendar">
+              <div class="calendar__header">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <script src="/js/hijri-date.js"></script>
     <script src="/js/jquery.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/sweetalert2.all.min.js"></script>
     <script src="/js/main.js"></script>
   </body>
 </html>

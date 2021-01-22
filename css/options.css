@@ -1,15 +1,13 @@
 /*
-Copyright (c) 2019 by Shahed Nasser. All Rights Reserved.
+Copyright (c) 2020 by Shahed Nasser. All Rights Reserved.
  */
 
+html {
+  direction: __MSG_@@bidi_dir__;
+}
+
 body {
-  height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  text-align: __MSG_@@bidi_start_edge__ !important;
 }
 
 /* The switch - the box around the slider */
@@ -70,9 +68,10 @@ input:checked + .slider:before {
 }
 
 .icon {
-  width: 200px;
+  width: 80px;
   margin: 0 auto;
   display: block;
+  float: __MSG_@@bidi_start_edge__;
 }
 
 .btn.btn-dark {
@@ -94,9 +93,7 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-@media screen and (min-width: 768px){
-  .form-container {
-    width: 70%;
-    margin: 0 auto;
-  }
+
+select {
+  -moz-appearance: none;
 }
