@@ -377,7 +377,13 @@ $(document).ready(function(){
 
   function showRandomThikr(){
     let thikr = getRandomThikr();
-    $(".athkar-container .thikr").text(thikr);
+    $(".athkar-container .thikr").html(`
+      <span class="thikr-arabic">${thikr.ar}</span>
+      <div class="translations">
+        <span class="thikr-english">${thikr.en}</span>
+        <span class="thikr-ar-en">${thikr['ar-en']}</span>
+      </div>
+    `);
     $(".athkar-container").show();
   }
 
