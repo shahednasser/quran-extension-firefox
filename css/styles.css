@@ -367,6 +367,8 @@ body {
   display: block;
   width: -moz-fit-content;
   margin: 2px 0 0 auto;
+  max-width: 70px;
+  white-space: inherit;
 }
 
 .not-month-day {

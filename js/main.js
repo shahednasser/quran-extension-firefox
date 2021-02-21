@@ -7,6 +7,7 @@ $(document).ready(function(){
       originalWeekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
       weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
       hijriHolidays = [],
+      currentHijriMonths = [],
       extensionURL = encodeURI("https://addons.mozilla.org/en-US/firefox/addon/quran-in-new-tab/");
   const messageRegex = /__MSG_(\w+)__/g,
         months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 
@@ -14,7 +15,7 @@ $(document).ready(function(){
         hijriMonths = ['Muharram', 'Safar', 'Rabi__al_awwal', 'Rabi__al_thani', 'Jumada_al_ula', 'Jumada_al_akhirah',
           'Rajab', 'Sha_ban', 'Ramadan', 'Shawwal', 'Dhu_al_Qa_dah', 'Dhu_al_Hijjah'],
         calendarData = [],
-        currentHijriDate = new HijriDate(),
+        currentHijriDate = moment(),
         currentDate = new Date();
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
@@ -302,6 +303,7 @@ $(document).ready(function(){
             } else {
               //print old calendar
               hijriHolidays = result.calendar.hijriHolidays;
+              currentHijriMonths = result.calendar.hijriMonths
               setCalendar(result.calendar.data);
            }
           } else {
@@ -500,7 +502,7 @@ $(document).ready(function(){
 
   function setDates(dateObj, hijriData){
     $(".gregorian-date").text(dateObj.getDate() + "/" + (dateObj.getMonth() + 1) + "/" + dateObj.getFullYear());
-    $(".hijri-date").text(hijriData.getDate() + " " + browser.i18n.getMessage(hijriMonths[hijriData.getMonth() - 1]) + " " + hijriData.getFullYear());
+    $(".hijri-date").text(hijriData.iDate() + " " + browser.i18n.getMessage(hijriMonths[hijriData.iMonth()]) + " " + hijriData.iYear());
   }
 
   function setNewImage(reload) {
@@ -545,7 +547,8 @@ $(document).ready(function(){
 
   function getNewCalendar () {
     setCalendar(calendarData);
-    browser.storage.local.set({calendar: {date: currentDate.toString(), data: calendarData, hijriHolidays: hijriHolidays}});
+    browser.storage.local.set({calendar: {date: currentDate.toString(), data: calendarData, 
+      hijriHolidays: hijriHolidays, hijriMonths: currentHijriMonths}});
   }
 
   function setCalendar (data) {
@@ -595,7 +598,15 @@ $(document).ready(function(){
 
     $(".calendar__header").after(html);
     $("#gregorianMonth").text(browser.i18n.getMessage(data[0].gregorian.month.en));
-    $("#hijriMonth").text(browser.i18n.getMessage(data[0].hijri.month.en));
+    //assemble hijri months
+    let hijriMonthsStr = "";
+    for (let j = 0; j < currentHijriMonths.length; j++) {
+      if (hijriMonthsStr.length) {
+        hijriMonthsStr += "/";
+      }
+      hijriMonthsStr += chrome.i18n.getMessage(currentHijriMonths[j]);
+    }
+    $("#hijriMonth").text(hijriMonthsStr);
     $(".calendar-table .loader").hide();
     $(".calendar-inner-container").show();
   }
@@ -621,7 +632,8 @@ $(document).ready(function(){
         }
 
         if (isFastingDay(parseInt(calendarData[i- 1].hijri.day), originalWeekdays[j], hijriHolidays, 
-              i > 1 ? hijriHolidays[i - 2] : [], i < totalDays && hijriHolidays.length > i ? hijriHolidays[i] : [])) {
+          i > 1 ? hijriHolidays[i - 2] : [], i < totalDays && hijriHolidays.length > i ? hijriHolidays[i] : [],
+          calendarData[i - 1].hijri.month.en)) {
           dayStr += '<span class="badge badge-danger calendar-note">' + browser.i18n.getMessage('Fasting') + '</span>';
         }
       }
@@ -634,10 +646,10 @@ $(document).ready(function(){
     return str;
   }
 
-  function isFastingDay (day, dayOfWeek, holidays, dayBeforeHolidays, dayAfterHolidays) {
+  function isFastingDay (day, dayOfWeek, holidays, dayBeforeHolidays, dayAfterHolidays, monthName) {
     return day == 13 || day == 14 || day == 15 || dayOfWeek == "Monday" || dayOfWeek == "Thursday" || 
       holidays.includes("Ashura") || holidays.includes("Arafa") || dayBeforeHolidays.includes("Ashura") || 
-      dayAfterHolidays.includes("Ashura");
+      dayAfterHolidays.includes("Ashura") || monthName === 'Ramadan';
   }
 
   function localizeHtmlPage($elm)
@@ -682,7 +694,7 @@ $(document).ready(function(){
     }
     for (let i = 0; i < nbDays; i++) {
       const gregorianDate = new Date(currentYear, currentMonth, i + 1),
-            hijriDate = gregorianDate.toHijri();
+            hijriDate = moment(currentYear + '-' + (currentMonth + 1) + '-' + (i+1), 'YYYY-M-D');
       calendarData.push({
         "gregorian": {
           "weekday": {
@@ -695,15 +707,18 @@ $(document).ready(function(){
         },
         "hijri": {
           "month": {
-            "en": hijriMonths[hijriDate.getMonth()]
+            "en": hijriMonths[hijriDate.iMonth()]
           },
-          "day": hijriDate.getDate()
+          "day": hijriDate.iDate()
         }
       });
-      $.get('http://api.aladhan.com/v1/hToG?date=' + hijriDate.getDate() + "-" + hijriDate.getMonth() + "-" + hijriDate.getFullYear(),
+      if (!currentHijriMonths.includes(hijriMonths[hijriDate.iMonth()])) {
+        currentHijriMonths.push(hijriMonths[hijriDate.iMonth()]);
+      }
+      $.get('http://api.aladhan.com/v1/hToG?date=' + hijriDate.iDate() + "-" + (hijriDate.iMonth() + 1) + "-" + hijriDate.iYear(),
           function (data) {
             hijriHolidays.splice(this.i, 0, data.data.hijri.holidays);
-            if(currentHijriDate.getDate() == data.data.hijri.day && data.data.hijri.holidays.length){
+            if(currentHijriDate.iDate() == data.data.hijri.day && data.data.hijri.holidays.length){
               let text = "";
               for(let i = 0; i < data.data.hijri.holidays.length; i++){
                 if(i !== 0){
