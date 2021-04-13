@@ -16,6 +16,7 @@ Replace the new tab page with Quran verses and beautiful nature pictures. The ve
 	- [Athkar](#athkar)
 	- [Prayer Times](#prayer-times)
 	- [Credits](#credits)
+	- [Development Note](#development-note)
 	- [Issues](#issues)
 	- [License](#license)
 
@@ -58,12 +59,27 @@ Starting from version 1.0, you can show randomly generated Athkar on your new ta
 
 Starting from version 2.1.2, you can now see prayer times and change their calculation method from the settings
 
+
 ## Credits
 
 - All Quran verses, audios, translations, calendar and prayer times use the API of [Al Quran Cloud](https://alquran.cloud/)
 - Icons from [Feather](https://feathericons.com/) and [Icon Scout](https://iconscout.com/)
 - Logo from https://www.freeiconspng.com/img/8824
 
+## Development Note
+
+When adding this extension on firefox as a Temporary Add-on for development, you need to add the following in the `manifest.json`:
+
+```json
+"browser_specific_settings": {
+  "gecko": {
+    "id": "addon@example.com",
+    "strict_min_version": "42.0"
+  }
+}
+```
+
+You can read more about this [here](https://blog.shahednasser.com/making-your-extension-compatible-with-both-chrome-and-firefox/#manifest)
 
 ## Issues
 
