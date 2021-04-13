@@ -332,5 +332,23 @@
     },
     "contact_developer": {
         "message": "Contact developer"
+    },
+    "prayer_times": {
+        "message": "Prayer Times"
+    },
+    "show_prayer_times": {
+        "message": "Show Prayer Times"
+    },
+    "show_prayer_times_description": {
+        "message": "Show Prayer Times. Prayer Times can be sometimes inaccurate."
+    },
+    "prayer_times_method": {
+        "message": "Prayer Times Method"
+    },
+    "prayer_times_method_description": {
+        "message": "Since prayer times can be inaccurate, you can try adjusting the method to achieve the best result."
+    },
+    "prayer_times_hint": {
+        "message": "These might not be accurate. Please check the settings to change the method of calculation for a better result."
     }
 }

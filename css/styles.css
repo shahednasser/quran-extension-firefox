@@ -416,8 +416,69 @@ body {
   width: 24px;
 }
 
+.verse-social-links a,
 .verse-social-links a:hover {
   text-decoration: none;
+}
+
+.prayer-times-container {
+  position: absolute;
+  left: 10px;
+  top: 35%;
+  background-color: rgba(255, 255, 255, .7);
+  padding: 10px;
+  border-radius: 10px;
+  color: #333;
+  max-width: 200px;
+  word-spacing: 4px;
+  padding-right: 25px;
+}
+
+.prayer-times-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.prayer-time {
+  padding-__MSG_@@bidi_start_edge__: 30px;
+  position: relative;
+}
+
+.prayer-time:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.prayer-time:before {
+  content: '';
+  height: 24px;
+  width: 24px;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.prayer-time.fajr:before {
+  background-image: url(../assets/fajr.svg);
+}
+
+.prayer-time.dhuhr:before {
+  background-image: url(../assets/dhuhr.svg);
+}
+
+.prayer-time.asr:before {
+  background-image: url(../assets/asr.svg);
+}
+
+.prayer-time.maghrib:before {
+  background-image: url(../assets/maghrib.svg);
+}
+
+.prayer-time.isha:before {
+  background-image: url(../assets/isha.svg);
 }
 
 @media screen and (min-width: 992px) {
